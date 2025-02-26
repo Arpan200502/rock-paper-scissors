@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+        .choice {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .choice:hover {
+            background-color: #c0392b;
+        }
+        pre {
+            font-size: 16px;
+            color: #f1c40f;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <p>Choose your move:</p>
+    <button class="choice" onclick="playGame(0)">Rock</button>
+    <button class="choice" onclick="playGame(1)">Paper</button>
+    <button class="choice" onclick="playGame(2)">Scissors</button>
+    
+    <p id="result"></p>
+    <p id="computer-choice"></p>
+    <p id="user-choice"></p>
+    
+    <script>
+        const choices = [
+            "Rock \n    _______\n---'   ____)\n      (_____)\n      (_____)\n      (____)\n---.__(___)",
+            "Paper \n    _______\n---'   ____)____\n          ______)\n          _______)\n         _______)\n---.__________)",
+            "Scissors \n    _______\n---'   ____)____\n          ______)\n       __________)\n      (____)\n---.__(___)"
+        ];
+        
+        function playGame(userChoice) {
+            let computerChoice = Math.floor(Math.random() * 3);
+            document.getElementById("user-choice").innerHTML = "Your choice:<pre>" + choices[userChoice] + "</pre>";
+            document.getElementById("computer-choice").innerHTML = "Computer's choice:<pre>" + choices[computerChoice] + "</pre>";
+            
+            if (userChoice === computerChoice) {
+                document.getElementById("result").innerText = "It's a draw!";
+            } else if (
+                (userChoice === 0 && computerChoice === 2) ||
+                (userChoice === 1 && computerChoice === 0) ||
+                (userChoice === 2 && computerChoice === 1)
+            ) {
+                document.getElementById("result").innerText = "You win!";
+            } else {
+                document.getElementById("result").innerText = "You lose!";
+            }
+        }
+    </script>
+</body>
+</html>
